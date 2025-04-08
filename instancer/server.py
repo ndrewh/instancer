@@ -22,7 +22,7 @@ IP_BASE = "10.0.4."
 PORT_BASE = int(os.getenv("CHALL_PORT_BASE", "7000"))
 POW_DIFFICULTY = int(os.getenv("POW_DIFFICULTY", "0"))
 NUM_SERVERS = int(os.getenv("CHALL_NUM_SERVERS", "5"))
-TIMEOUT = int(os.getenv("CHAL_TIMEOUT", "300"))
+TIMEOUT = int(os.getenv("CHALL_TIMEOUT", "300"))
 DEFAULT_IFACE = os.getenv("DEFAULT_IFACE")
 assert DEFAULT_IFACE, "DEFAULT_IFACE must be set"
 
@@ -165,10 +165,9 @@ def worker(req: MyTCPHandler):
     req.wfile.write(f"[*] port = {port}\n\n".encode())
 
     req.wfile.write(f"[*] This instance will stay up for {TIMEOUT} seconds\n".encode())
-    req.wfile.write(f"[*] You must keep this connection open.".encode())
     req.wfile.flush()
 
-    proc = subprocess.Popen(["/nsjail.sh", IP_BASE+str(port - PORT_BASE), real_ip], stdout=req.wfile)
+    proc = subprocess.Popen(["/nsjail.sh", IP_BASE+str(port - PORT_BASE), real_ip])
     for x in range(TIMEOUT // 5):
         try:
             proc.wait(5)

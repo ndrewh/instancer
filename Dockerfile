@@ -42,21 +42,22 @@ chmod 770 /chroot
 RUN python3 -m venv /venv
 RUN bash -c "source /venv/bin/activate && pip3 install ecdsa requests proxy-protocol"
 
-WORKDIR /home/ctf/challenge/
-COPY .  src/
+WORKDIR /home/ctf/
+COPY instancer/ instancer/
+COPY chal/ chal/
 
 ## BEGIN CHALLENGE SETUP
 
-RUN cp src/flag .
-RUN cp src/challenge .
+RUN chmod +x chal/start.sh
 
 ## END CHALLENGE SETUP
 
-RUN mv src/jail.cfg src/server.py src/pow.py src/setup.sh src/nsjail.sh / && \
+RUN mv chal/jail.cfg instancer/server.py instancer/pow.py instancer/setup.sh instancer/nsjail.sh / && \
 rm -rf src/ && \
 chown -R root:ctf . && \
 chown root:ctf / /home /home/ctf/ && \
-chmod 440 flag
+chmod +x /setup.sh /nsjail.sh && \
+chmod 440 /home/ctf/chal/flag
 
 
 EXPOSE 9000
