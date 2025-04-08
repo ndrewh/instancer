@@ -3,8 +3,12 @@
 Instancer that relies on source-IP based routing for isolation.
 
 - All instances run a SHARED (privileged) docker container -- we use nested `nsjail`s for instances.
+- Instances each have an isolated network namespace; each instance can bind to the "same" port(s), and
+services can interact within each instance without affecting other instances and without changing
+the challenge.
 - Requires `--net=host`. Maps ports 9000 (instancer) and 7000-7100 (instances) by default.
 - Instances are quickly cleaned up when clients disconenct from the instancer.
+
 
 ## How to setup
 
