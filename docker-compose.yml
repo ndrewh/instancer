@@ -1,0 +1,10 @@
+version: "3"
+services:
+    instancer:
+        build: .
+        privileged: true
+        environment:
+            - "CHALL_NUM_SERVERS=10"
+            - "POW_DIFFICULTY=1"
+        
+        network_mode: host

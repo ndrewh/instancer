@@ -1,0 +1,12 @@
+version: "3"
+services:
+    instancer:
+        build: .
+        ports:
+            - 9000:9000
+            - 7002-7020:7002-7020
+        privileged: true
+        environment:
+            - "ENABLE_PROXY2=1"
+            - "CHALL_NUM_SERVERS=10"
+            - "POW_DIFFICULTY=1"
