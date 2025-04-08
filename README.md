@@ -1,6 +1,10 @@
 # instancer
 
-Instancer that relies on source-IP based routing
+Instancer that relies on source-IP based routing for isolation.
+
+- All instances run a SHARED (privileged) docker container -- we use nested `nsjail`s for instances.
+- Requires `--net=host`. Maps ports 9000 (instancer) and 7000-7100 (instances) by default.
+- Instances are quickly cleaned up when clients disconenct from the instancer.
 
 ## How to setup
 
@@ -18,6 +22,10 @@ Instancer that relies on source-IP based routing
 ```
 docker-compose up
 ```
+
+You should verify that instances are isolated (i.e. that only the source IP that
+connected to the instancer can connect to the instance), since your network setup
+may vary.
 
 
 ## ADVANCED: Running behind a TCP proxy such as Traefik
