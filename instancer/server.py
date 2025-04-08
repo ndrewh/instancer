@@ -164,6 +164,7 @@ def worker(req: MyTCPHandler):
     req.wfile.write(f"\n[*] ip = {MY_IP}\n".encode())
     req.wfile.write(f"[*] port = {port}\n\n".encode())
 
+    req.wfile.write(f"[*] Your instance has started. KEEP THIS CONNECTION OPEN.\n".encode())
     req.wfile.write(f"[*] This instance will stay up for {TIMEOUT} seconds\n".encode())
     req.wfile.flush()
 

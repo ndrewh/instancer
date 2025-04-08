@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "[*] Your instance is starting now. Keep this connection open."
 mkdir /sys/fs/cgroup/{cpu,memory,pids}/NSJAIL
 chown ctf /sys/fs/cgroup/{cpu,memory,pids}/NSJAIL
 

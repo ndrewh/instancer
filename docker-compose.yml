@@ -7,6 +7,6 @@ services:
             - "CHALL_NUM_SERVERS=10"
             - "POW_DIFFICULTY=1"
             - "CHALL_INTERNAL_PORT=8000"
-            - "CHALL_TIMEOUT=10"
+            - "CHALL_TIMEOUT=300"
 
         network_mode: host
